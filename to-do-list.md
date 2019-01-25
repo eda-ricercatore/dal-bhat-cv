@@ -35,6 +35,7 @@ To-do list:
 			+ Associate that particular image/video with the label "detected".
 		* If specific object **is not in** the image/video, return "not detected".
 			+ Associate that particular image/video with the label "not detected".
+	- Important Note: You can probably find an implementation (or complete solution) for a number of object detection problems online.
 + Customize the end-to-end solution, or our object detection "flow," for drone detection.
 + Implement the training/inference
 
