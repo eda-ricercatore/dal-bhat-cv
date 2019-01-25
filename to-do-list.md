@@ -20,6 +20,10 @@ Assumed knowledge and skills that are prerequisites for embedded machine/deep le
 To-do list:
 + learn how to implement a graph data structure using the adjacency map graph representation \cite[\S14.2, pp. 627; \S14.2.3, pp. 632]{Goodrich2013}.
 	- Do so using object-oriented analysis and design (or object-oriented programming) in [*Python*](https://github.com/eda-ricercatore/gulyas-scripts/blob/master/notes/python.md)
++ Learn the basics of [object detection](https://en.wikipedia.org/wiki/Object_detection)
+	- Know the difference between [training and inference](https://blogs.nvidia.com/blog/2016/08/22/difference-deep-learning-training-inference-ai/)
+	- For object detection solutions based on neural networks, including artificial neural networks (ANNs) and deep learning algorithms, we should have a neural network for training, and an approximate version of the training neural network for inference.
+	- That is, the inference neural network is an approximate model of the training neural network.
 + Find a data set for an [object detection](https://en.wikipedia.org/wiki/Object_detection) problem in [computer vision](https://en.wikipedia.org/wiki/Computer_vision)
 	- Implement an [end-to-end solution](https://www.techopedia.com/definition/19057/end-to-end-solution-e2es), or complete solution, for that object detection problem (e.g., detecting a cat, flower, or drone).
 		* Create a [SQL database](https://en.wikipedia.org/wiki/SQL) to store records of image/video and its corresponding label.
@@ -31,7 +35,8 @@ To-do list:
 			+ Associate that particular image/video with the label "detected".
 		* If specific object **is not in** the image/video, return "not detected".
 			+ Associate that particular image/video with the label "not detected".
-
++ Customize the end-to-end solution, or our object detection "flow," for drone detection.
++ Implement the training/inference
 
 
 
