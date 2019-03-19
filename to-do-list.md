@@ -1,6 +1,6 @@
 #	To-Do List
 
-
+**Implement the object detection flow by March 24, 2019, 2359 hrs.**
 
 Assumed knowledge and skills that are prerequisites for embedded machine/deep learning - good to know, but not necessarily required.
 + [numerical linear algebra](https://en.wikipedia.org/wiki/Numerical_linear_algebra)
