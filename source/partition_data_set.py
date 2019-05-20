@@ -69,6 +69,8 @@ import calendar
 from os import listdir
 from os.path import isfile, isdir, join
 from os import walk
+from collections import Counter
+import string
 
 
 
@@ -106,7 +108,7 @@ class partition_data_set:
 	def partition_2_1():
 		print("=	Partition into 2:1 (67%, 33%).")
 	# =========================================================
-	##	Method to to obtain the names of the subdirectories.
+	##	Method to obtain the names of the subdirectories.
 	#		Solution #1.
 	#	Each subdirectory/subfolder is a set of video frames
 	#		from a video of an object that we have to detect.
@@ -122,6 +124,7 @@ class partition_data_set:
 			onlydirs = [f for f in listdir(location_of_data_set) if isdir(join(location_of_data_set, f))]
 			onlydirs = sorted(onlydirs, key=str.lower)
 			print("onlydirs",onlydirs,"=")
+			return onlydirs
 		else:
 			"""
 				location_of_data_set is not a directory
@@ -131,7 +134,7 @@ class partition_data_set:
 			"""
 			return []
 	# =========================================================
-	##	Method to to obtain the names of the subdirectories.
+	##	Method to obtain the names of the subdirectories.
 	#		Solution #2.
 	#	Each subdirectory/subfolder is a set of video frames
 	#		from a video of an object that we have to detect.
@@ -141,7 +144,7 @@ class partition_data_set:
 	#		data set.
 	@staticmethod
 	def get_names_of_subdirectories2(location_of_data_set):
-		print("=	Get names of subdirectories: Method #2.")
+		#print("=	Get names of subdirectories: Method #2.")
 		if os.path.isdir(location_of_data_set):
 			# Get the names of the subdirectories.
 			f = []
@@ -150,7 +153,8 @@ class partition_data_set:
 				f.extend(dirnames)
 				break
 			dirnames = sorted(dirnames, key=str.lower)
-			print("dirnames",dirnames,"=")
+			#print("dirnames",dirnames,"=")
+			return dirnames
 		else:
 			"""
 				location_of_data_set is not a directory
@@ -159,6 +163,25 @@ class partition_data_set:
 					an user-defined error.
 			"""
 			return []
+	# =========================================================
+	##	Method to count the number of video per category (or
+	#		class - in terms of classification in pattern
+	#		recognition).
+	#	From a list of video names, determine the number of
+	#		instances of each video category.
+	#	@return - Dictionary of (category, number of instances
+	#		of each video category).
+	#	O(n) method, where n is the number of "videos" in the
+	#		data set.
+	@staticmethod
+	def count_number_of_videos_per_category(list_of_video_names):
+		list_of_categories = []
+		for i in list_of_video_names:
+			list_of_categories.append(i.rstrip(string.digits))
+		print("list_of_categories",list_of_categories,"=")
+		dict_of_categories_and_number_of_instances = Counter(list_of_categories)
+		print("dict_of_categories_and_number_of_instances",dict_of_categories_and_number_of_instances,"=")
+		return dict_of_categories_and_number_of_instances
 
 
 
@@ -172,7 +195,8 @@ if __name__ == "__main__":
 		Variables used to parameterize our solution.
 	"""
 	directory_of_data_set = "../../dac-2019-sdc"
-	partition_data_set.get_names_of_subdirectories1(directory_of_data_set)
-	partition_data_set.get_names_of_subdirectories2(directory_of_data_set)
+	#list_of_subdirectories = partition_data_set.get_names_of_subdirectories1(directory_of_data_set)
+	list_of_subdirectories = partition_data_set.get_names_of_subdirectories2(directory_of_data_set)
+	dict_of_categories_and_instances = partition_data_set.count_number_of_videos_per_category(list_of_subdirectories)
 	partition_data_set.partition_2_1_1()
 	partition_data_set.partition_2_1()
