@@ -65,6 +65,11 @@ import warnings
 import re
 import filecmp
 import calendar
+# Note included in the above menu yet.
+from os import listdir
+from os.path import isfile, isdir, join
+from os import walk
+
 
 
 ###############################################################
@@ -73,3 +78,99 @@ import calendar
 
 
 ###############################################################
+"""
+	Module that partitions the data set for either of the
+		following in machine learning:
+		1) training, validation, and testing; or,
+		2) training and cross validation.
+"""
+class partition_data_set:
+	# =========================================================
+	##	Method to partition data set into 2:1:1 (50%, 25%, 25%)
+	#		for training, validation, and testing.
+	#	@return - List of names for sets of video frames, or
+	#		names of subfolders in the data set.
+	#	O(n) method, where n is the number of "videos" in the
+	#		data set.
+	@staticmethod
+	def partition_2_1_1():
+		print("=	Partition into 2:1:1 (50%, 25%, 25%).")
+	# =========================================================
+	##	Method to partition data set into 2:1 (67%, 33%) for
+	#		training and cross validation.
+	#	@return - List of names for sets of video frames, or
+	#		names of subfolders in the data set.
+	#	O(n) method, where n is the number of "videos" in the
+	#		data set.
+	@staticmethod
+	def partition_2_1():
+		print("=	Partition into 2:1 (67%, 33%).")
+	# =========================================================
+	##	Method to to obtain the names of the subdirectories.
+	#		Solution #1.
+	#	Each subdirectory/subfolder is a set of video frames
+	#		from a video of an object that we have to detect.
+	#	@return - List of names for sets of video frames, or
+	#		names of subdirectories in the data set.
+	#	O(n) method, where n is the number of "videos" in the
+	#		data set.
+	@staticmethod
+	def get_names_of_subdirectories1(location_of_data_set):
+		print("=	Get names of subdirectories: Method #1.")
+		if os.path.isdir(location_of_data_set):
+			# Get the names of the subdirectories.
+			onlydirs = [f for f in listdir(location_of_data_set) if isdir(join(location_of_data_set, f))]
+			print("onlydirs",onlydirs,"=")
+		else:
+			"""
+				location_of_data_set is not a directory
+
+				Future work: Change "return []" to raising
+					an user-defined error.
+			"""
+			return []
+	# =========================================================
+	##	Method to to obtain the names of the subdirectories.
+	#		Solution #2.
+	#	Each subdirectory/subfolder is a set of video frames
+	#		from a video of an object that we have to detect.
+	#	@return - List of names for sets of video frames, or
+	#		names of subdirectories in the data set.
+	#	O(n) method, where n is the number of "videos" in the
+	#		data set.
+	@staticmethod
+	def get_names_of_subdirectories2(location_of_data_set):
+		print("=	Get names of subdirectories: Method #2.")
+		if os.path.isdir(location_of_data_set):
+			# Get the names of the subdirectories.
+			f = []
+			for (dirpath, dirnames, filenames) in walk(location_of_data_set):
+				#f.extend(filenames)
+				f.extend(dirnames)
+				break
+			print("dirnames",dirnames,"=")
+		else:
+			"""
+				location_of_data_set is not a directory
+
+				Future work: Change "return []" to raising
+					an user-defined error.
+			"""
+			return []
+
+
+
+
+###############################################################
+# Main method for the program.
+
+#	If this is executed as a Python script,
+if __name__ == "__main__":
+	"""
+		Variables used to parameterize our solution.
+	"""
+	directory_of_data_set = "../../dac-2019-sdc"
+	partition_data_set.get_names_of_subdirectories1(directory_of_data_set)
+	partition_data_set.get_names_of_subdirectories2(directory_of_data_set)
+	partition_data_set.partition_2_1_1()
+	partition_data_set.partition_2_1()
