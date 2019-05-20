@@ -41,6 +41,7 @@ def proc():
             images.append(cv2.imread(folder+'/'+file+'.jpg'))
             labels.append(get_label(folder,cat))
             bbs.append(get_coords(folder+'/'+file+'.xml'))
-            print(bbs,labels)
+            
     return bbs,labels,imgs
-proc()
+if __name__ == '__main__':
+    proc()
