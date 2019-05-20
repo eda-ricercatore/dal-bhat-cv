@@ -120,6 +120,7 @@ class partition_data_set:
 		if os.path.isdir(location_of_data_set):
 			# Get the names of the subdirectories.
 			onlydirs = [f for f in listdir(location_of_data_set) if isdir(join(location_of_data_set, f))]
+			onlydirs = sorted(onlydirs, key=str.lower)
 			print("onlydirs",onlydirs,"=")
 		else:
 			"""
@@ -148,6 +149,7 @@ class partition_data_set:
 				#f.extend(filenames)
 				f.extend(dirnames)
 				break
+			dirnames = sorted(dirnames, key=str.lower)
 			print("dirnames",dirnames,"=")
 		else:
 			"""
