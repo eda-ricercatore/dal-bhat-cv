@@ -105,7 +105,7 @@ class partition_data_set:
 	#	O(n) method, where n is the number of "videos" in the
 	#		data set.
 	@staticmethod
-	def partition_2_1():
+	def partition_2_1(dict_of_labels_and_instances):
 		print("=	Partition into 2:1 (67%, 33%).")
 	# =========================================================
 	##	Method to obtain the names of the subdirectories.
