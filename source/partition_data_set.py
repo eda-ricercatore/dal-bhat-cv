@@ -95,7 +95,7 @@ class partition_data_set:
 	#	O(n) method, where n is the number of "videos" in the
 	#		data set.
 	@staticmethod
-	def partition_2_1_1():
+	def partition_2_1_1(dict_of_labels_and_instances):
 		print("=	Partition into 2:1:1 (50%, 25%, 25%).")
 	# =========================================================
 	##	Method to partition data set into 2:1 (67%, 33%) for
@@ -198,5 +198,5 @@ if __name__ == "__main__":
 	#list_of_subdirectories = partition_data_set.get_names_of_subdirectories1(directory_of_data_set)
 	list_of_subdirectories = partition_data_set.get_names_of_subdirectories2(directory_of_data_set)
 	dict_of_categories_and_instances = partition_data_set.count_number_of_videos_per_category(list_of_subdirectories)
-	partition_data_set.partition_2_1_1()
-	partition_data_set.partition_2_1()
+	partition_data_set.partition_2_1_1(dict_of_categories_and_instances)
+	partition_data_set.partition_2_1(dict_of_categories_and_instances)
