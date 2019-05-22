@@ -8,6 +8,12 @@
 		in machine learning.
 	# 2:1 (67%, 33%) for training and cross validation.
 
+	This is used for either the following.
+	1) Training and cross validation.
+	2) training, validation, and testing.
+
+	For the final submission, we will use the entire data set
+		for training, so that we can have a better accuracy.
 
 
 	#### IMPORTANT NOTES:
@@ -87,21 +93,62 @@ import string
 		2) training and cross validation.
 """
 class partition_data_set:
+	"""
+		Design decision:
+			If number of instances of a category/label is < 15,
+				use the entire data set for that category/label.
+			Else, we partition the data set.
+
+			The variable "threshold_for_partitioning" is used to store this value.
+
+		From executing the current version of my script:
+			dict_of_categories_and_number_of_instances
+			(dictionary of categories/labels and the number of instances)
+
+		Counter({'person': 29, 'car': 23, 'riding': 17, 'boat': 8, 'drone': 4, 'wakeboard': 4, 'building': 3, 'group': 2, 'truck': 2, 'horseride': 1, 'paraglider': 1, 'whale': 1})
+
+		So, we partition the data set for people, cars, and riding.
+	"""
+	threshold_for_partitioning = 15
 	# =========================================================
 	##	Method to partition data set into 2:1:1 (50%, 25%, 25%)
 	#		for training, validation, and testing.
-	#	@return - List of names for sets of video frames, or
+	#	@return - List of lists of names for sets of video frames, or
 	#		names of subfolders in the data set.
+	#		This is a list of lists of lists.
+	#		In the contained lists of lists, each list of lists
+	#			stores the names of the videos of a partition
+	#			as a separate list.
+	#		However, if the number of instances of videos is <
+	#			threshold_for_partitioning, the list of lists would
+	#			become a list (since no partitioning is done).
+	#		Also, each list of lists shall contain at least a
+	#			string (a list of one string, rather than a list
+	#			of lists), since there exists at least an instance
+	#			of each video category.
+	#		Hence, for this method, each list of lists shall
+	#			contain THREE lists.
 	#	O(n) method, where n is the number of "videos" in the
 	#		data set.
 	@staticmethod
 	def partition_2_1_1(dict_of_labels_and_instances):
 		print("=	Partition into 2:1:1 (50%, 25%, 25%).")
+		for i in dict_of_labels_and_instances:
+			print("i:::",i,"=")
+			#print("dict_of_labels_and_instances[i]:::",dict_of_labels_and_instances[i],"=")
+			if dict_of_labels_and_instances[i] > partition_data_set.threshold_for_partitioning:
+
 	# =========================================================
 	##	Method to partition data set into 2:1 (67%, 33%) for
 	#		training and cross validation.
-	#	@return - List of names for sets of video frames, or
+	#	@return - List of lists of names for sets of video frames, or
 	#		names of subfolders in the data set.
+	#		This is a list of lists of lists.
+	#		In the contained lists of lists, each list of lists
+	#			stores the names of the videos of a partition
+	#			as a separate list.
+	#		Hence, for this method, each list of lists shall
+	#			contain TWO lists.
 	#	O(n) method, where n is the number of "videos" in the
 	#		data set.
 	@staticmethod
